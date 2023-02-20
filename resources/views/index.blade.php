@@ -28,11 +28,12 @@
                 <p>Penerbit: {{ $r->penerbit }}</p>
                 <p>Rilis: {{ date('d M Y', strtotime($r->created_at)) }}</p>
                 <div class="row d-flex justify-content-between px-3">
-                    <a href="/peminjaman" class="btn btn-outline-primary col-sm-8">Pinjam</a>
+                    <button data-target="#tambahPinjam{{ $r->idbuku }}" type="button" data-toggle="modal" class="btn btn-outline-primary col-sm-8">Pinjam</button>
                     <button data-target="#editBuku{{ $r->idbuku }}" type="button" data-toggle="modal" class="btn btn-outline-success col-sm-2">Edit</button>
                     <a onclick="return confirm('Apakah anda yakin akan menghapus data ini?')" href="/buku/delete/{{ $r->idbuku }}" class="btn btn-outline-danger col-sm-2">Delete</a>
                 </div>
             </div>
+            @include('tambah')
             @include('buku/edit')
         @endforeach
     </div>
