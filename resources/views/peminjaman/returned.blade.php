@@ -6,10 +6,11 @@
     @include('component/banner')
     <hr>
     <div class="row pr-3 col-sm-12 ml-2">
-        <a href="/peminjaman" class="text-dark"><h1>Data Pengembalian</h1></a>
+        <a href="/peminjaman/returned" class="text-dark"><h1>Data Pengembalian</h1></a>
     </div>
     <div class="px-4">
-        <div class="table-responsive shadow mb-3">
+        <a href="{{ route('peminjaman') }}">Kembali</a>
+        <div class="table-responsive shadow mt-2 mb-3">
             <table class="table table-bordered table-hover">
                 <thead>
                     <tr class="bg-light">
