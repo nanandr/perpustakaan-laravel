@@ -27,7 +27,7 @@
                         <td>{{ $r->buku->judul }}</td>
                         <td>{{ $r->siswa->namasiswa }}</td>
                         <td>{{ $r->petugas->namapetugas }}</td>
-                        <td>{{ date('d M Y - H:m', strtotime($r->deleted_at)) }}</td>
+                        <td>{{ date('d M Y - H:i', strtotime($r->deleted_at)) }}</td>
                         <td class="col-sm-2 text-center"> 
                             <a onclick="return confirm('Hapus Peminjaman Buku ini?')" href="/peminjaman/delete/permanent/{{ $r->idpinjam }}" class="btn btn-outline-danger">Delete</a>
                         </td>

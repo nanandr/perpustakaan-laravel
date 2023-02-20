@@ -31,7 +31,7 @@ class PeminjamanController extends Controller
             'idbuku' => $request->idbuku,
             'idpetugas' => Auth::user()->idpetugas,
             'idsiswa' => $request->idsiswa,
-            'created_at' => Carbon::now()
+            'created_at' => Carbon::now('Asia/Jakarta')
         ]);
         
         return redirect('/peminjaman');
@@ -45,7 +45,7 @@ class PeminjamanController extends Controller
     }
 
     public function returned(){
-        $data = Peminjaman::onlyTrashed()->paginate(10);
+        $data = Peminjaman::onlyTrashed()->orderBy('deleted_at', 'DESC')->paginate(10);
         return view('peminjaman/returned', ['data' => $data]);
     }
 

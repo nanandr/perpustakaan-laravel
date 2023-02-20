@@ -30,7 +30,7 @@
                         <td>{{ $r->buku->judul }}</td>
                         <td>{{ $r->siswa->namasiswa }}</td>
                         <td>{{ $r->petugas->namapetugas }}</td>
-                        <td>{{ date('d M Y - H:m', strtotime($r->created_at)) }}</td>
+                        <td>{{ date('d M Y - H:i', strtotime($r->created_at)) }}</td>
                         <td class="col-sm-2 text-center"> 
                             <a onclick="return confirm('Kembalikan Peminjaman Buku ini?')" href="/peminjaman/delete/{{ $r->idpinjam }}" class="btn btn-outline-danger">Kembalikan</a>
                         </td>
