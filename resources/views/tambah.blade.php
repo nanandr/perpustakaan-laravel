@@ -17,9 +17,9 @@
                             <option></option>
                             @foreach($buku as $rbuku)
                                     @if ($rbuku->idbuku == $r->idbuku)
-                                    <option value="{{ $r->idbuku }}" selected>{{ $r->judul }}</option>
+                                    <option value="{{ $rbuku->idbuku }}" selected>{{ $rbuku->judul }}</option>
                                     @else
-                                    <option value="{{ $r->idbuku }}">{{ $r->judul }}</option>
+                                    <option value="{{ $rbuku->idbuku }}">{{ $rbuku->judul }}</option>
                                     @endif
                                 
                             @endforeach
