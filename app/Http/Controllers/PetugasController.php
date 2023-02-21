@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Petugas;
+use App\Models\Peminjaman;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -92,12 +93,18 @@ class PetugasController extends Controller
             'idpetugas' => $id,
             'password' => $request->password
         ];
+
         if(Auth::attempt($data)){
-            $Petugas = Petugas::find($id);
-            $Petugas->delete();
-            Auth::logout();
-            Session::flash('success', 'Akun telah dihapus');    
-            return redirect('/');
+            $Peminjaman = Peminjaman::where('idpetugas',$id);
+            $Peminjaman->forcedelete();
+
+            if($Peminjaman->count() == 0){
+                $Petugas = Petugas::find($id);
+                $Petugas->delete();
+                Auth::logout();
+                Session::flash('success', 'Akun telah dihapus');    
+                return redirect('/');
+            }            
         }
         else{
             Session::flash('error', 'Gagal, Salah Password');

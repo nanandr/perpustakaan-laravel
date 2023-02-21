@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Siswa;
+use App\Models\Peminjaman;
 use Carbon\Carbon;
 
 class SiswaController extends Controller
@@ -53,8 +54,13 @@ class SiswaController extends Controller
     }
 
     public function delete($id){
-        $Siswa = Siswa::find($id);
-        $Siswa->delete();
+        $Peminjaman = Peminjaman::where('idsiswa',$id);
+        $Peminjaman->forceDelete();
+        
+        if($Peminjaman->count() == 0){
+            $Siswa = Siswa::find($id);
+            $Siswa->delete();
+        }
 
         return redirect('/siswa');
     }

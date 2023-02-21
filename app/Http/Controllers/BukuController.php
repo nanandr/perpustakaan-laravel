@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Buku;
+use App\Models\Peminjaman;
 use Carbon\Carbon;
 
 class BukuController extends Controller
@@ -53,8 +54,13 @@ class BukuController extends Controller
     }
 
     public function delete($id){
-        $Buku = Buku::find($id);
-        $Buku->delete();
+        $Peminjaman = Peminjaman::where('idbuku',$id);
+        $Peminjaman->forceDelete();
+        
+        if($Peminjaman->count() == 0){
+            $Buku = Buku::find($id);
+            $Buku->delete();
+        }
 
         return redirect('/buku');
     }
